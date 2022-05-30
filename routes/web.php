@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use Monolog\Logger;
+use NewRelic\Monolog\Enricher\Handler;
+use NewRelic\Monolog\Enricher\Processor;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +51,13 @@ Route::get('/error4', function () {
 Route::get('/error5', function () {
     throw new Exception("This is Error 5");
 });
+
+
+Route::get('/error6', function () {
+    $log = new Logger('log');
+    $log->pushProcessor(new Processor());
+    $log->pushHandler(new Handler());
+
+    $log->info('Hello, world!');
+});
+
