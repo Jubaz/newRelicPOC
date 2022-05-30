@@ -3,6 +3,9 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Monolog\Logger;
+use NewRelic\Monolog\Enricher\Processor;
+use NewRelic\Monolog\Enricher\Handler as newRelicHandler;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,6 +53,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+
+        $log = new Logger('log');
+        $log->pushProcessor(new Processor());
+        $log->pushHandler(new newRelicHandler());
+
+        $log->error($exception->getMessage(),$exception->getTrace());
+
         return parent::render($request, $exception);
     }
 }

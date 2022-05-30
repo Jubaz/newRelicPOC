@@ -58,6 +58,6 @@ Route::get('/error6', function () {
     $log->pushProcessor(new Processor());
     $log->pushHandler(new Handler());
 
-    $log->info('Hello, world!');
+    $log->error('Hello, world!');
 });
 
