@@ -25,3 +25,11 @@ Route::get('/error', function () {
 
 
 
+Route::get('/error2', function () {
+    throw new Exception("This is Error 2");
+});
+
+
+Route::get('/error3', function () {
+    throw new Exception("This is Error 3");
+});
