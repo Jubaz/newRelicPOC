@@ -43,3 +43,8 @@ Route::get('/log', function () {
 Route::get('/error4', function () {
     throw new \Illuminate\Auth\AuthenticationException();
 });
+
+
+Route::get('/error5', function () {
+    throw new Exception("This is Error 5");
+});
