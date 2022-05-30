@@ -38,3 +38,8 @@ Route::get('/error3', function () {
 Route::get('/log', function () {
     Log::channel('cronJob')->info('Cron job logging info');
 });
+
+
+Route::get('/error4', function () {
+    throw new \Illuminate\Auth\AuthenticationException();
+});
