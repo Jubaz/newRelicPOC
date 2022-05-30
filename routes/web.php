@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,4 +33,8 @@ Route::get('/error2', function () {
 
 Route::get('/error3', function () {
     throw new Exception("This is Error 3");
+});
+
+Route::get('/log', function () {
+    Log::channel('cronJob')->info('Cron job logging info');
 });
