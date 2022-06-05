@@ -53,12 +53,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-
-        $log = new Logger('log');
+        $log = new Logger('exception');
         $log->pushProcessor(new Processor());
         $log->pushHandler(new newRelicHandler());
 
-        $log->error($exception->getMessage(),$exception->getTrace());
+        $log->error($exception->getMessage(),[
+            'request_url' => $request->url(),
+            'request_method' => $request->method()
+        ]);
 
         return parent::render($request, $exception);
     }
