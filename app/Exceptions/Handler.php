@@ -60,6 +60,7 @@ class Handler extends ExceptionHandler
         $log->error($exception->getMessage(),[
             'request_url' => $request->url(),
             'request_method' => $request->method(),
+            'request_parameters' => $request->all(),
             'trace' => $exception->getTrace(),
             'string_trace' => $exception->getTraceAsString()
         ]);
