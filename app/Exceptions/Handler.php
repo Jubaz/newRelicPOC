@@ -59,7 +59,9 @@ class Handler extends ExceptionHandler
 
         $log->error($exception->getMessage(),[
             'request_url' => $request->url(),
-            'request_method' => $request->method()
+            'request_method' => $request->method(),
+            'trace' => $exception->getTrace(),
+            'string_trace' => $exception->getTraceAsString()
         ]);
 
         return parent::render($request, $exception);
